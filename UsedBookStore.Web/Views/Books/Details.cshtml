@@ -1,0 +1,43 @@
+﻿@model BookViewModel
+
+
+<div class="card container"  style="background-color: rgb(233, 233, 233);">
+  <div class="card-header text-light ml-0 row">
+      <div class="col-12 col-md-6">
+          <h1 class="fw-light pt-3" style="color: rgb(153, 179, 166);">@Model.BookForm.Title</h1>
+          <p class="fw-light" style="color: rgb(153, 179, 166);">by @Model.BookForm.Author</p>
+      </div>
+      <div class="col-12 col-md-6 text-end pt-4">
+          <span class="badge pt-5" style="color: rgb(153, 179, 166);"><p class="h5 fw-light">@Model.BookForm.Format.Name</p></span>
+          <span class="badge pt-5 h5" style="color: rgb(153, 179, 166);"><p class="h5 fw-light">@Model.BookForm.Genre.Name</p></span>
+      </div>
+  </div>
+  <div class="card-body row container">
+      <div class="container rounded p-2">
+        <img src="@Model.BookForm.ImageUrl" class="card-img-top rounded" style="float:left; width:302px; height:458px;"/>
+          <div class="row">
+              <div class="col-8 col-lg-8">
+                  <div class="row pl-2">
+                      <h5 class="text-muted fw-light"> Description: <br /> <p class="h6 fw-light"> @Model.BookForm.Description</p> </h5>
+                  </div>
+
+                  <div class="row pl-2">
+                      <h5 class="text-muted fw-light">ISBN:<br /> @Model.BookForm.ISBN</h5>
+                  </div>
+                  <div class="row pl-2">
+                      <h5 class="text-muted pb-2 fw-light">Price:<br /> @Model.BookForm.Price SEK</h5>
+                  </div>
+                  <div class="row pl-2">
+                      <h5 class="text-muted pb-2 fw-light">Condition: <br />@Model.BookForm.Condition.Name</h5>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+  <div style="background-color: rgb(233, 233, 233);">
+              <button type="submit" value="Add to Cart" class="btn" style="color: rgb(153, 179, 166);">Add to Cart</button>
+              <a class="btn nav-link mr-auto pb-2" style="float:right; color: rgb(153, 179, 166);" asp-action="Index">Back to Home</a>
+
+      </div>
+  </div>

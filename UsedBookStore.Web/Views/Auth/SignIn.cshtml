@@ -1,0 +1,55 @@
+﻿@model UsedBookStore.Web.Models.ViewModels.SignInViewModel
+
+@{
+    ViewData["Title"] = "Sign in";
+}
+   
+    <div class="align-items-center gradient-custom-3 justify-content-center text-center">
+    <h1 class="display-4">The Used Book Store</h1>
+    <h5 class="fw-light">Please sign up to see our library and save books.</h5>
+</div>
+
+
+<section>
+    <div class="mask d-flex align-items-center gradient-custom-3 mt-5">
+      <div class="container">
+        <div class="row d-flex justify-content-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5 fw-light">Sign in</h2>
+  
+                <form asp-action="SignIn" class="mt-4" asp-route-returnUrl=@Model.ReturnUrl>
+                    <div class="form-outline mb-1">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                  <div class="form-outline mb-1">
+                    <label asp-for="Password" class="control-label">Password</label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" type="password" class="text-danger"></span>
+                          </div>
+  
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-secondary btn-block btn-lg gradient-custom-4 text-body mt-4">Sign in</button>
+                  </div>
+
+                  <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a asp-action="SignUp" class="text-body"><u>Sign up</u></a></p>
+  
+                </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

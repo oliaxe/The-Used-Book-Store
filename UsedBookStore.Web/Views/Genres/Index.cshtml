@@ -1,0 +1,37 @@
+﻿@model GenreViewModel
+
+<div class="row pb-3">
+			<h1 class="fw-light" style="color: rgb(153, 179, 166);">@Model.GenreForm.Name</h1>
+
+			@foreach (var p in @Model.BooksByGenre)
+			{
+				@if (p.Genre.Name == @Model.GenreForm.Name)
+				{
+<div class="col-lg-3 col-md-6 ">
+  <div class="row p-2">
+	<div class="col-12 p-1" style="border:1px solid #838099; border-radius: 5px; width: 300px; height: 250px;">
+	  <div class="card">
+		<div class="card-body" style="height:200px; background-color: rgb(233, 233, 233);">
+		<div class="pl-1">
+		<img src="@p.ImageUrl" style="height:150px; width: 100px; float:left; padding-right: 10px;"/>
+		  <p class="card-title h5 fw-light">@p.Title</p>
+		  <p class="card-title fw-light">by <b>@p.Author</b></p>
+		  <p class="card-title h5 fw-light">@p.Genre.Name</p>
+		</div>
+		<div class="pl-1 fw-light">
+		  <p>Price: <b>@p.Price</b> SEK</p>
+		</div>
+		</div>
+	  </div>
+	  <div>
+		<a asp-action="Details" class="btn form-control" asp-route-id="@p.Id">
+		  Details
+		</a>
+	  </div>
+	</div> 
+  </div>
+</div>
+				}
+			}
+
+		</div>

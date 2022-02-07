@@ -1,0 +1,19 @@
+﻿@model Test.ViewModels.BookViewModel
+
+
+
+
+
+@if (Model.Books == null)
+{
+<p>Loading.... </p> 
+}
+
+else
+{
+    @foreach(var p in Model.Books)
+    {
+        <div><strong>@p.Title</strong></div>
+        <div class="text-muted">@p.Author</div>
+    }
+}
