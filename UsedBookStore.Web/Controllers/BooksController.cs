@@ -9,6 +9,7 @@ namespace UsedBookStore.Web.Controllers
     [Authorize]
     public class BooksController : Controller
     {
+        List<ShoppingCartItem> shoppingCart = new List<ShoppingCartItem>();
         public async Task<IActionResult> Index()
         {
             var bookModel = new BookViewModel();
@@ -60,7 +61,7 @@ namespace UsedBookStore.Web.Controllers
 
             if (SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart") == null)
             {
-                List<ShoppingCartItem> shoppingCart = new List<ShoppingCartItem>();
+                shoppingCart = new List<ShoppingCartItem>();
                 shoppingCart.Add(new ShoppingCartItem() { Book = bookModel.Books.FirstOrDefault(x => x.Id == id), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "shoppingCart", shoppingCart);
             }
@@ -79,6 +80,15 @@ namespace UsedBookStore.Web.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public async Task<IActionResult> CheckOut()
+        {
+
+
+            return View();
+
+        }
+
         public int ItemExists(int id)
         {
             List<ShoppingCartItem> shoppingCart = SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart");
@@ -90,7 +100,6 @@ namespace UsedBookStore.Web.Controllers
 
             return -1;
         }
-
 
     }
 
