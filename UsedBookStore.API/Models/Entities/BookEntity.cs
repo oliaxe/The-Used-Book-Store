@@ -65,7 +65,7 @@ namespace UsedBookStore.API.Models.Entities
             Author = author;
             ISBN = iSBN;
             Price = price;
-            FormatID = formatID;
+            FormatId = formatID;
             GenreId = genreId;
             ConditionId = conditionId;
         }
@@ -79,7 +79,7 @@ namespace UsedBookStore.API.Models.Entities
             Description = description;
             ISBN = iSBN;
             Price = price;
-            FormatID = formatID;
+            FormatId = formatID;
             GenreId = genreId;
             ConditionId = conditionId;
         }
@@ -94,7 +94,7 @@ namespace UsedBookStore.API.Models.Entities
             Format = format;
             Genre = genre;
             Condition = condition;
-            FormatID = formatID;
+            FormatId = formatID;
             GenreId = genreId;
             ConditionId = conditionId;
         }
@@ -107,7 +107,7 @@ namespace UsedBookStore.API.Models.Entities
             Description = description;
             ISBN = iSBN;
             Price = price;
-            FormatID = formatID;
+            FormatId = formatID;
             GenreId = genreId;
             ConditionId = conditionId;
             Format = format;
@@ -124,7 +124,7 @@ namespace UsedBookStore.API.Models.Entities
             Description = description;
             ISBN = iSBN;
             Price = price;
-            FormatID = formatID;
+            FormatId = formatID;
             GenreId = genreId;
             ConditionId = conditionId;
             Format = format;
@@ -146,7 +146,7 @@ namespace UsedBookStore.API.Models.Entities
         [Range(1, 10000)]
         public decimal Price { get; set; }
 
-        public int FormatID { get; set; }
+        public int FormatId { get; set; }
         public int GenreId { get; set; }
         public int ConditionId { get; set; }
 
@@ -157,7 +157,8 @@ namespace UsedBookStore.API.Models.Entities
         public GenreEntity Genre { get; set; }
         [Required]
         public ConditionEntity Condition { get; set; }
-
+        [Required]
+        public ICollection<OrderRowEntity> OrderRows { get; set; }
 
 
     }

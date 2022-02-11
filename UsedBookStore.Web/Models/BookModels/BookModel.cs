@@ -33,6 +33,7 @@ namespace UsedBookStore.Web.Models
             Author = author;
             ISBN = iSBN;
             Price = price;
+            ImageUrl = imageUrl;
         }
 
         public BookModel(string title, string author, string imageUrl, string description, string iSBN, decimal price)

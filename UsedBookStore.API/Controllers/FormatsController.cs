@@ -37,7 +37,7 @@ namespace UsedBookStore.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<FormatModel>> GetFormatEntity(int id)
         {
-            var formatEntity = await _context.Conditions.FindAsync(id);
+            var formatEntity = await _context.Formats.FindAsync(id);
 
             if (formatEntity == null)
             {

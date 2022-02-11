@@ -30,5 +30,8 @@ namespace UsedBookStore.Web.Models
         [Required]
         [Column(TypeName = "nvarchar(50)")]
         public string City { get; set; }
+
+
+
     }
 }

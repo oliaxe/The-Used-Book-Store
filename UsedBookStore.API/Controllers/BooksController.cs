@@ -83,6 +83,9 @@ namespace UsedBookStore.API.Controllers
             bookEntity.Description = bookUpdateModel.Description;
             bookEntity.ISBN = bookUpdateModel.ISBN;
             bookEntity.Price = bookUpdateModel.Price;
+            bookEntity.FormatId = bookUpdateModel.FormatId;
+            bookEntity.GenreId = bookUpdateModel.GenreId;
+            bookEntity.ConditionId = bookUpdateModel.ConditionId;
 
             _context.Entry(bookEntity).State = EntityState.Modified;
 

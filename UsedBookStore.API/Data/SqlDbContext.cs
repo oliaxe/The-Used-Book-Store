@@ -15,8 +15,8 @@ namespace UsedBookStore.API.Data
         public virtual DbSet<ConditionEntity> Conditions { get; set; }
         public virtual DbSet<FormatEntity> Formats { get; set; }
         public virtual DbSet<GenreEntity> Genres { get; set; }
-        public virtual DbSet<ShoppingCartEntity> ShoppingCarts { get; set; }
-
-
+        public virtual DbSet<CustomerEntity> Customers { get; set; }
+        public virtual DbSet<OrderEntity> Orders { get; set; }
+        public virtual DbSet<OrderRowEntity> OrderRows { get; set; }
     }
 }

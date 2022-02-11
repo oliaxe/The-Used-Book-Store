@@ -1,6 +1,10 @@
 ﻿@model BookViewModel
 
 
+
+
+
+<form class="buy>
 <div class="card container"  style="background-color: rgb(233, 233, 233);">
   <div class="card-header text-light ml-0 row">
       <div class="col-12 col-md-6">
@@ -34,10 +38,9 @@
               </div>
           </div>
       </div>
-  </div>
+  </div></form>
   <div style="background-color: rgb(233, 233, 233);">
-              <button type="submit" value="Add to Cart" class="btn" style="color: rgb(153, 179, 166);">Add to Cart</button>
               <a class="btn nav-link mr-auto pb-2" style="float:right; color: rgb(153, 179, 166);" asp-action="Index">Back to Home</a>
-
-      </div>
+              <a class="nav-link text-dark" input-type="submit" asp-area="" asp-controller="Books" asp-action="AddToCart" asp-route-id="@Model.BookForm.Id">Add to Cart</a>
+     </div>
   </div>

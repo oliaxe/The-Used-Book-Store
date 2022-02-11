@@ -11,7 +11,7 @@ using UsedBookStore.API.Data;
 namespace UsedBookStore.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace UsedBookStore.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FormatID")
+                    b.Property<int>("FormatId")
                         .HasColumnType("int");
 
                     b.Property<int>("GenreId")
@@ -56,9 +56,6 @@ namespace UsedBookStore.API.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ShoppingCartEntityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -67,11 +64,9 @@ namespace UsedBookStore.API.Migrations
 
                     b.HasIndex("ConditionId");
 
-                    b.HasIndex("FormatID");
+                    b.HasIndex("FormatId");
 
                     b.HasIndex("GenreId");
-
-                    b.HasIndex("ShoppingCartEntityId");
 
                     b.ToTable("Books");
                 });
@@ -91,6 +86,39 @@ namespace UsedBookStore.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Conditions");
+                });
+
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.CustomerEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("UsedBookStore.API.Models.Entities.FormatEntity", b =>
@@ -127,7 +155,7 @@ namespace UsedBookStore.API.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("UsedBookStore.API.Models.Entities.ShoppingCartEntity", b =>
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.OrderEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,9 +163,43 @@ namespace UsedBookStore.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingCarts");
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.OrderRowEntity", b =>
+                {
+                    b.Property<int>("OrderRowId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderRowId"), 1L, 1);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderRowId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderRows");
                 });
 
             modelBuilder.Entity("UsedBookStore.API.Models.Entities.BookEntity", b =>
@@ -150,7 +212,7 @@ namespace UsedBookStore.API.Migrations
 
                     b.HasOne("UsedBookStore.API.Models.Entities.FormatEntity", "Format")
                         .WithMany("Books")
-                        .HasForeignKey("FormatID")
+                        .HasForeignKey("FormatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -160,10 +222,6 @@ namespace UsedBookStore.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UsedBookStore.API.Models.Entities.ShoppingCartEntity", null)
-                        .WithMany("Books")
-                        .HasForeignKey("ShoppingCartEntityId");
-
                     b.Navigation("Condition");
 
                     b.Navigation("Format");
@@ -171,9 +229,49 @@ namespace UsedBookStore.API.Migrations
                     b.Navigation("Genre");
                 });
 
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.OrderEntity", b =>
+                {
+                    b.HasOne("UsedBookStore.API.Models.Entities.CustomerEntity", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.OrderRowEntity", b =>
+                {
+                    b.HasOne("UsedBookStore.API.Models.Entities.BookEntity", "Book")
+                        .WithMany("OrderRows")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("UsedBookStore.API.Models.Entities.OrderEntity", "Order")
+                        .WithMany("OrderRows")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.BookEntity", b =>
+                {
+                    b.Navigation("OrderRows");
+                });
+
             modelBuilder.Entity("UsedBookStore.API.Models.Entities.ConditionEntity", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.CustomerEntity", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("UsedBookStore.API.Models.Entities.FormatEntity", b =>
@@ -186,9 +284,9 @@ namespace UsedBookStore.API.Migrations
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("UsedBookStore.API.Models.Entities.ShoppingCartEntity", b =>
+            modelBuilder.Entity("UsedBookStore.API.Models.Entities.OrderEntity", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("OrderRows");
                 });
 #pragma warning restore 612, 618
         }

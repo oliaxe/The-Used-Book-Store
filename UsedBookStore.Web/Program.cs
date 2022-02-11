@@ -18,7 +18,8 @@ builder.Services.ConfigureApplicationCookie(x =>
 {
     x.LoginPath = "/auth/signin";
 });
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -37,6 +38,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
