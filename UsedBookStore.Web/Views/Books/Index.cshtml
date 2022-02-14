@@ -3,15 +3,10 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
 <div class="p-2 m-5" style="float: right; width: 320px;">
 
+    <form>
     <h5 class="fw-light">Shopping cart</h5>
-    @if (ViewBag.ShoppingCart != null)
-    {
-        <a class="nav-link text-dark btn-xs" style="float:right" input-type="submit" asp-area="" asp-controller="Books" asp-action="CheckOut">Check out</a>
-    }
-
     @if (ViewBag.ShoppingCart == null)
     {
         <p>Your shopping cart is empty</p>
@@ -19,10 +14,10 @@
     else
     {
         <ul class="list-group list-group-flush">
-
+            
             @foreach (var item in ViewBag.ShoppingCart)
             {
-
+                    {
                 <div>
 
                 <li class="list-group-item">
@@ -30,10 +25,17 @@
                     <p>@item.Book.Price SEK - Amount: @item.Quantity</p>
                 </li>
         </div>
+                }
             }
         </ul>
     }
+        @if (ViewBag.ShoppingCart != null)
+    {
+        <a class="nav-link text-dark btn-xs" style="float:right" input-type="submit" value="BookViewModel" asp-area="" asp-controller="Books" asp-action="CheckOut">Check out</a>
+    }
+    </form>
     </div>
+
 
 <div class="container mt-5">
 
@@ -77,3 +79,10 @@
 
 
     </div>
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.BookForm.Id)
+        @Html.Hidden("ShoppingCartItem", (object)ViewBag.ShoppingCart)
+        <input type="submit" value="Submit"/>
+    }

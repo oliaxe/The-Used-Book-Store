@@ -1,1 +1,12 @@
-﻿korvkoev
+﻿@model BookViewModel
+
+<h1 class="fw-light">Place order</h1>
+
+        @foreach (var item in @ViewBag.ShoppingCart)
+        {
+                <li class="list-group-item">
+                    <h5>@item.Book.Title</h5>
+                    <p>@item.Book.Price SEK - Amount: @item.Quantity</p>
+                </li>
+        }
+      

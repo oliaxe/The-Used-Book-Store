@@ -4,6 +4,13 @@ namespace UsedBookStore.API.Models.Entities
 {
     public class OrderEntity
     {
+        public OrderEntity(int id, DateTime orderDate, int customerId)
+        {
+            Id = id;
+            OrderDate = orderDate;
+            CustomerId = customerId;
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]

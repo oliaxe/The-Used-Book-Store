@@ -9,7 +9,11 @@ namespace UsedBookStore.Web.Controllers
     [Authorize]
     public class BooksController : Controller
     {
-        List<ShoppingCartItem> shoppingCart = new List<ShoppingCartItem>();
+        List<ShoppingCartItem> shoppingCart;
+        BookViewModel bookModel;
+        List<BookModel> bookModelList;
+        ShoppingCartViewModel shoppingCartViewModel;
+
         public async Task<IActionResult> Index()
         {
             var bookModel = new BookViewModel();
@@ -45,8 +49,9 @@ namespace UsedBookStore.Web.Controllers
 
         public async Task<IActionResult> AddToCart(int id)
         {
-            var bookModel = new BookViewModel();
+            bookModel = new BookViewModel();
             bookModel.Books = new List<BookModel>();
+
 
             using (var client = new HttpClient())
             {
@@ -58,13 +63,13 @@ namespace UsedBookStore.Web.Controllers
             ViewBag.ShoppingCart = SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart");
 
 
-
             if (SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart") == null)
             {
                 shoppingCart = new List<ShoppingCartItem>();
                 shoppingCart.Add(new ShoppingCartItem() { Book = bookModel.Books.FirstOrDefault(x => x.Id == id), Quantity = 1 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "shoppingCart", shoppingCart);
             }
+
             else
             {
                 List<ShoppingCartItem> shoppingCart = SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart");
@@ -77,17 +82,20 @@ namespace UsedBookStore.Web.Controllers
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "shoppingCart", shoppingCart);
             }
 
+
             return RedirectToAction("Index");
         }
 
 
-        public async Task<IActionResult> CheckOut()
+        public async Task<IActionResult> CheckOut(List<ShoppingCartItem> shoppingCartItems)
         {
 
+            ViewBag.ShoppingCart = SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart");
 
-            return View();
 
+            return View("CheckOut");
         }
+
 
         public int ItemExists(int id)
         {

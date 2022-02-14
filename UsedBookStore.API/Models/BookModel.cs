@@ -104,5 +104,7 @@
         public FormatModel Format { get; set; }
         public GenreModel Genre { get; set; }
         public ConditionModel Condition { get; set; }
+        public virtual ICollection<OrderRowModel> OrderRows { get; set; }
+
     }
 }
