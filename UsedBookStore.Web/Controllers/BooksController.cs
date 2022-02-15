@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UsedBookStore.Web.Helpers;
 using UsedBookStore.Web.Models;
+using UsedBookStore.Web.Models.Entities;
 using UsedBookStore.Web.Models.ViewModels;
 
 namespace UsedBookStore.Web.Controllers
@@ -109,9 +110,32 @@ namespace UsedBookStore.Web.Controllers
         }
 
 
-        public async Task<IActionResult> PlaceOrder()
+        public async Task<ActionResult<List<ShoppingCartItem>>> PlaceOrder()
         {
-            return View();
+            OrderEntity order = new OrderEntity();
+            order.CustomerEmail = User.Identity.Name;
+            order.DateTime = DateTime.Now;
+
+            OrderRowEntity orderRow = new OrderRowEntity();
+            List<ShoppingCartItem> shoppingCart = SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart");
+
+            using (var client = new HttpClient())
+            {
+                await client.PostAsJsonAsync("https://localhost:7090/api/orders", order);
+            }
+
+            foreach (var item in shoppingCart)
+            {
+                orderRow.BookId = item.Book.Id;
+                orderRow.Quantity = item.Quantity;
+
+                using (var client = new HttpClient())
+                {
+                    await client.PostAsJsonAsync("https://localhost:7090/api/OrderRows", orderRow);
+                }
+
+            }
+            return View(shoppingCart);
         }
 
 

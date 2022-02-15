@@ -29,7 +29,7 @@ namespace UsedBookStore.API.Controllers
             {
                 items.Add(new OrderRowModel(
                     item.OrderRowId,
-                    new OrderModel(item.Order.Id, item.Order.OrderDate, item.Order.CustomerId),
+                    new OrderModel(item.Order.Id, item.Order.OrderDate, item.Order.CustomerEmail),
                     new BookModel(item.Book.Title),
                     item.Quantity
                     ));
@@ -51,7 +51,7 @@ namespace UsedBookStore.API.Controllers
             }
             return new OrderRowModel(
                 orderRowEntity.OrderRowId,
-                new OrderModel(orderRowEntity.Order.Id, orderRowEntity.Order.OrderDate, orderRowEntity.Order.CustomerId),
+                new OrderModel(orderRowEntity.Order.Id, orderRowEntity.Order.OrderDate, orderRowEntity.Order.CustomerEmail),
                 new BookModel(orderRowEntity.Book.Title),
                 orderRowEntity.Quantity
                 );
@@ -62,9 +62,11 @@ namespace UsedBookStore.API.Controllers
         [HttpPost]
         public async Task<ActionResult<OrderRowModel>> PostOrderRowEntity(OrderRowCreateModel orderRowCreateModel)
         {
+            var order = _context.Orders.OrderByDescending(a => a.Id).FirstOrDefault();
+
             var _orderRowEntity = new OrderRowEntity(
                 orderRowCreateModel.OrderRowId,
-                orderRowCreateModel.OrderId,
+                order.Id,
                 orderRowCreateModel.BookId,
                 orderRowCreateModel.Quantity
                 );
@@ -74,9 +76,10 @@ namespace UsedBookStore.API.Controllers
 
             var orderRowEntity = await _context.OrderRows.Include(x => x.Book).Include(x => x.Order).Include(x => x.Order.Customer).FirstOrDefaultAsync(x => x.OrderRowId == _orderRowEntity.OrderRowId);
 
+
             return CreatedAtAction("GetOrderRowEntity", new { id = orderRowEntity.OrderRowId }, new OrderRowModel(
                 orderRowEntity.OrderRowId,
-                new OrderModel(orderRowEntity.Order.Id, orderRowEntity.Order.OrderDate, orderRowEntity.Order.CustomerId),
+                new OrderModel(orderRowEntity.Order.Id, orderRowEntity.Order.OrderDate, orderRowEntity.Order.CustomerEmail),
                 new BookModel(orderRowEntity.Book.Title),
                 orderRowEntity.Quantity
                 ));

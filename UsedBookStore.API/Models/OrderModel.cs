@@ -10,16 +10,16 @@
             Customer = customer;
         }
 
-        public OrderModel(int id, DateTime orderDate, int customerId)
+        public OrderModel(int id, DateTime orderDate, string customerEmail)
         {
             Id = id;
             OrderDate = orderDate;
-            CustomerId = customerId;
+            CustomerEmail = customerEmail;
         }
 
         public int Id { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         public CustomerModel Customer { get; set; }
     }
 }

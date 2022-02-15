@@ -5,6 +5,12 @@ namespace UsedBookStore.API.Models.Entities
 {
     public class OrderRowEntity
     {
+        public OrderRowEntity(int bookId, int quantity, int quantity1)
+        {
+            BookId = bookId;
+            Quantity = quantity;
+        }
+
         public OrderRowEntity(int orderRowId, int orderId, int bookId, int quantity)
         {
             OrderRowId = orderRowId;
@@ -13,14 +19,14 @@ namespace UsedBookStore.API.Models.Entities
             Quantity = quantity;
         }
 
-        public OrderRowEntity(int orderRowId, OrderEntity order, BookEntity book, int quantity)
-        {
-            OrderRowId = orderRowId;
-            Order = order;
-            Book = book;
-            Quantity = quantity;
+        //public OrderRowEntity(int orderRowId, OrderEntity order, BookEntity book, int quantity)
+        //{
+        //    OrderRowId = orderRowId;
+        //    Order = order;
+        //    Book = book;
+        //    Quantity = quantity;
 
-        }
+        //}
 
         public OrderRowEntity(int orderRowId, int orderId, int bookId, int quantity, OrderEntity order, BookEntity book)
         {

@@ -2,9 +2,10 @@
 {
     public class CustomerModel
     {
-        public CustomerModel(int id)
+
+        public CustomerModel(string customerEmail)
         {
-            Id = id;
+            CustomerEmail = customerEmail;
         }
 
         public CustomerModel(string firstName, string lastName)
@@ -13,7 +14,7 @@
             LastName = lastName;
         }
 
-        public int Id { get; set; }
+        public string CustomerEmail { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string StreetName { get; set; }

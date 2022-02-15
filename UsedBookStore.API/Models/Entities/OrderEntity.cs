@@ -4,11 +4,17 @@ namespace UsedBookStore.API.Models.Entities
 {
     public class OrderEntity
     {
-        public OrderEntity(int id, DateTime orderDate, int customerId)
+        public OrderEntity(DateTime orderDate, string customerEmail)
+        {
+            OrderDate = orderDate;
+            CustomerEmail = customerEmail;
+        }
+
+        public OrderEntity(int id, DateTime orderDate, string customerEmail)
         {
             Id = id;
             OrderDate = orderDate;
-            CustomerId = customerId;
+            CustomerEmail = customerEmail;
         }
 
         [Key]
@@ -16,7 +22,7 @@ namespace UsedBookStore.API.Models.Entities
         [Required]
         public DateTime OrderDate { get; set; } = DateTime.Now;
         [Required]
-        public int CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
 
         public CustomerEntity Customer { get; set; }
         public ICollection<OrderRowEntity> OrderRows { get; }

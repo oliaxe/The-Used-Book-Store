@@ -1,3 +1,10 @@
-﻿@model BookViewModel
+﻿@model List<ShoppingCartItem>
+
+
+
+@foreach (var item in Model)
+{
+    @item.Book.Title <br />
+}
 
 Thank you for your order! 

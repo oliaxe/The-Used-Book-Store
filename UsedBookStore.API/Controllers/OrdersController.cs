@@ -55,12 +55,11 @@ namespace UsedBookStore.API.Controllers
 
         // POST api/<OrdersController>
         [HttpPost]
-        public async Task<ActionResult<OrderModel>> PostBookEntity(OrderCreateModel orderCreateModel)
+        public async Task<ActionResult<OrderModel>> PostOrderEntity(OrderCreateModel orderCreateModel)
         {
             var _orderEntity = new OrderEntity(
-                orderCreateModel.Id,
                 orderCreateModel.OrderDate,
-                orderCreateModel.CustomerId
+                orderCreateModel.CustomerEmail
                 );
 
             _context.Orders.Add(_orderEntity);
@@ -71,7 +70,7 @@ namespace UsedBookStore.API.Controllers
             return CreatedAtAction("GetOrderEntity", new { id = orderEntity.Id }, new OrderModel(
                 orderEntity.Id,
                 orderEntity.OrderDate,
-                new CustomerModel(orderEntity.Customer.FirstName, orderEntity.Customer.LastName)
+                orderEntity.CustomerEmail
                 ));
 
         }
@@ -87,7 +86,7 @@ namespace UsedBookStore.API.Controllers
             var orderEntity = await _context.Orders.FindAsync(id);
             orderEntity.Id = orderUpdateModel.Id;
             orderEntity.OrderDate = orderUpdateModel.OrderDate;
-            orderEntity.CustomerId = orderUpdateModel.CustomerId;
+            orderEntity.CustomerEmail = orderUpdateModel.CustomerEmail;
 
             _context.Entry(orderEntity).State = EntityState.Modified;
 

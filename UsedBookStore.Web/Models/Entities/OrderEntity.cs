@@ -2,5 +2,7 @@
 {
     public class OrderEntity
     {
+        public DateTime DateTime { get; set; }
+        public string CustomerEmail { get; set; }
     }
 }
