@@ -13,13 +13,13 @@ namespace UsedBookStore.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                genreModel.BooksByGenre = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books");
+                genreModel.BooksByGenre = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books?key=gorbatjov");
             }
 
 
             using (var client = new HttpClient())
             {
-                genreModel.GenreForm = await client.GetFromJsonAsync<GenreModel>("https://localhost:7090/api/Genres/" + id);
+                genreModel.GenreForm = await client.GetFromJsonAsync<GenreModel>("https://localhost:7090/api/Genres/" + id + "?key=gorbatjov");
             }
 
 

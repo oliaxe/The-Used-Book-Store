@@ -31,7 +31,7 @@ namespace UsedBookStore.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                bookModel.Books = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books");
+                bookModel.Books = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books?key=gorbatjov");
             }
 
             ViewBag.Books = bookModel.Books;
@@ -49,7 +49,7 @@ namespace UsedBookStore.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                bookModel.BookForm = await client.GetFromJsonAsync<BookModel>("https://localhost:7090/api/Books/" + id);
+                bookModel.BookForm = await client.GetFromJsonAsync<BookModel>("https://localhost:7090/api/Books/" + id + "?key=gorbatjov");
             }
 
             return View(bookModel);
@@ -65,7 +65,7 @@ namespace UsedBookStore.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                bookModel.Books = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books");
+                bookModel.Books = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books?key=gorbatjov");
             }
 
 
@@ -133,8 +133,9 @@ namespace UsedBookStore.Web.Controllers
                 {
                     await client.PostAsJsonAsync("https://localhost:7090/api/OrderRows", orderRow);
                 }
-
             }
+            HttpContext.Session.Clear();
+
             return View(shoppingCart);
         }
 

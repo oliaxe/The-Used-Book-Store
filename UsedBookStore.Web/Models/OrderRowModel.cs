@@ -1,6 +1,6 @@
-﻿namespace UsedBookStore.Web.Models.Entities
+﻿namespace UsedBookStore.Web.Models
 {
-    public class OrderRowEntity
+    public class OrderRowModel
     {
         public int BookId { get; set; }
         public int Id { get; set; }

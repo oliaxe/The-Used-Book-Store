@@ -1,10 +1,13 @@
 ﻿@model List<ShoppingCartItem>
 
-
-
+    <div class="container mt-5">
+            <h1 class="fw-light" style="color: rgb(153, 179, 166);">Thank you for your order! </h1>
+    <br />
+       <h5 class="fw-light">Order summary: </h5>
 @foreach (var item in Model)
 {
-    @item.Book.Title <br />
+    <font>@item.Book.Author - @item.Book.Title</font><br />
 }
 
-Thank you for your order! 
+
+</div>

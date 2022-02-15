@@ -30,7 +30,7 @@ namespace UsedBookStore.API.Controllers
                 items.Add(new OrderModel(
                     item.Id,
                     item.OrderDate,
-                    new CustomerModel(item.Customer.FirstName, item.Customer.LastName)
+                    item.CustomerEmail
                     ));
             }
 

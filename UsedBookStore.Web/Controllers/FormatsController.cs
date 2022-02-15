@@ -13,13 +13,13 @@ namespace UsedBookStore.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                formatModel.BooksByFormat = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books");
+                formatModel.BooksByFormat = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7090/api/Books?key=gorbatjov");
             }
 
 
             using (var client = new HttpClient())
             {
-                formatModel.FormatForm = await client.GetFromJsonAsync<FormatModel>("https://localhost:7090/api/Formats/" + id);
+                formatModel.FormatForm = await client.GetFromJsonAsync<FormatModel>("https://localhost:7090/api/Formats/" + id + "?key=gorbatjov");
             }
 
 

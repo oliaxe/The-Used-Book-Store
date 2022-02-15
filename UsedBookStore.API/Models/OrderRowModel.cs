@@ -14,17 +14,21 @@
             Book = book;
             Quantity = quantity;
         }
-        public OrderRowModel(int orderRowId, int orderId, int bookId, int quantity)
+        public OrderRowModel(int orderRowId, int bookId, int quantity)
         {
             OrderRowId = orderRowId;
-            OrderId = orderId;
             BookId = bookId;
             Quantity = quantity;
         }
 
+        public OrderRowModel(int quantity, OrderModel order, BookModel book)
+        {
+            Quantity = quantity;
+            Order = order;
+            Book = book;
+        }
 
         public int OrderRowId { get; set; }
-        public int OrderId { get; set; }
         public int BookId { get; set; }
         public int Quantity { get; set; }
         public OrderModel Order { get; set; }

@@ -1,0 +1,12 @@
+﻿@model OrderViewModel
+
+<div class="container mt-5">
+<h1 class="fw-light" style="color: rgb(153, 179, 166);">All orders</h1>
+
+@foreach (var p in ViewBag.Orders)
+{
+   <font>Order ID: @p.Id Order Date: @p.OrderDate Customer Email: @p.CustomerEmail </font><br />
+}
+
+
+</div>
