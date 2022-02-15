@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UsedBookStore.Web.Helpers;
 using UsedBookStore.Web.Models;
@@ -9,10 +10,18 @@ namespace UsedBookStore.Web.Controllers
     [Authorize]
     public class BooksController : Controller
     {
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         List<ShoppingCartItem> shoppingCart;
         BookViewModel bookModel;
         List<BookModel> bookModelList;
         ShoppingCartViewModel shoppingCartViewModel;
+
+        public BooksController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -87,13 +96,22 @@ namespace UsedBookStore.Web.Controllers
         }
 
 
-        public async Task<IActionResult> CheckOut(List<ShoppingCartItem> shoppingCartItems)
+        public async Task<IActionResult> CheckOut(AppUser appUser)
         {
 
             ViewBag.ShoppingCart = SessionHelper.GetObjectAsJson<List<ShoppingCartItem>>(HttpContext.Session, "shoppingCart");
 
+            string userId = User.Identity.Name;
+
+            ViewBag.Customer = userId;
 
             return View("CheckOut");
+        }
+
+
+        public async Task<IActionResult> PlaceOrder()
+        {
+            return View();
         }
 
 
@@ -108,6 +126,7 @@ namespace UsedBookStore.Web.Controllers
 
             return -1;
         }
+
 
     }
 

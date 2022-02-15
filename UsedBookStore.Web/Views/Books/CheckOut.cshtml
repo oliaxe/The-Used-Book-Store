@@ -1,12 +1,48 @@
 ﻿@model BookViewModel
 
-<h1 class="fw-light">Place order</h1>
 
+<div class="container mt-5">
+
+    <h1 class="fw-light" style="color: rgb(153, 179, 166);">Place order</h1>
+    <br />
+    @if (ViewBag.ShoppingCart == null)
+    {
+        <p>Your shopping cart is empty.</p>
+
+    }
+    else
+    {
         @foreach (var item in @ViewBag.ShoppingCart)
         {
-                <li class="list-group-item">
-                    <h5>@item.Book.Title</h5>
-                    <p>@item.Book.Price SEK - Amount: @item.Quantity</p>
-                </li>
+            <li style="list-style: none;">
+                <h5 class="fw-light">@item.Book.Title</h5>
+                <p class="fw-light">@item.Book.Price SEK - Amount: @item.Quantity</p>
+            </li>
         }
-      
+    }
+    <br />
+    <br />
+    <ul class="list-group list-group-horizontal ">
+        <li class="list-group-item">
+            <a class="nav-link text-dark btn-xs" asp-controller="Books" asp-action="Index">Back</a>
+        </li>
+        @if (ViewBag.ShoppingCart == null)
+        {
+
+        }
+        else
+        {
+            <li class="list-group-item">
+                <a class="nav-link text-dark btn-xs" input-type="submit" asp-controller="Books" asp-action="PlaceOrder">Place order</a>
+            </li>
+        }
+    </ul>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p> You are currently signed in as @ViewBag.Customer</p>
+
+</div>
+
