@@ -72,12 +72,4 @@
                 </div>
             </div>
         }
-
     </div>
-
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-    {
-        @Html.HiddenFor(m => m.BookForm.Id)
-        @Html.Hidden("ShoppingCartItem", (object)ViewBag.ShoppingCart)
-        <input type="submit" value="Submit" />
-    }
