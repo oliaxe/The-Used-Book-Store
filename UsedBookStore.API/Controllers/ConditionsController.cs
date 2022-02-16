@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsedBookStore.API.Data;
+using UsedBookStore.API.Filters;
 using UsedBookStore.API.Models;
 using UsedBookStore.API.Models.Entities;
 
 namespace UsedBookStore.API.Controllers
 {
+    [ApiKeyAuth]
     [Route("api/[controller]")]
     [ApiController]
     public class ConditionsController : ControllerBase

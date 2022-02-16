@@ -1,12 +1,28 @@
 ﻿@model OrderViewModel
 
 <div class="container mt-5">
-<h1 class="fw-light" style="color: rgb(153, 179, 166);">All orders</h1>
+<h1 class="fw-light" style="color: rgb(153, 179, 166);">All order rows</h1>
+<h5 class="fw-light">Please see order number</h5>
 
-@foreach (var p in ViewBag.Orders)
+@foreach (var p in ViewBag.OrderRows)
 {
-   <font>Order ID: @p.Id Order Date: @p.OrderDate Customer Email: @p.CustomerEmail </font><br />
-}
-
-
+        <div class="col-lg-3 col-md-6 ">
+        <div class="row p-2">
+            <div class="col-12 p-1" style="border:1px solid #838099; border-radius: 5px; width: 500px; height: 170px;">
+                <div class="card">
+                    <div class="card-body" style="height:160px; background-color: rgb(233, 233, 233);">
+                        <div class="pl-1">
+                            <p class="card-title h5 fw-bold">OrderId: @p.Order.Id</p>
+                            <p class="card-title fw-light"><b>Book: @p.Book.Title</b></p>
+                            <p class="card-title h5 fw-light">Quantity: @p.Quantity </p>
+                        </div>
+                        <div class="pl-1 fw-light">
+                            <p>Email: <b>@p.Order.CustomerEmail</b> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
 </div>

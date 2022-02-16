@@ -6,8 +6,8 @@
        <h5 class="fw-light">Order summary: </h5>
 @foreach (var item in Model)
 {
-    <font>@item.Book.Author - @item.Book.Title</font><br />
+    <font>@item.Book.Author - @item.Book.Title  
+     <br> Amount: @item.Quantity</font><br />
 }
-
 
 </div>

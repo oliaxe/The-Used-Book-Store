@@ -3,10 +3,6 @@
     public class CustomerModel
     {
 
-        public CustomerModel(string customerEmail)
-        {
-            CustomerEmail = customerEmail;
-        }
 
         public CustomerModel(string firstName, string lastName)
         {

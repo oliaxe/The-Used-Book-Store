@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using UsedBookStore.Web.Models;
 using UsedBookStore.Web.Models.ViewModels;
 
 namespace UsedBookStore.Web.Controllers
@@ -19,20 +18,6 @@ namespace UsedBookStore.Web.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        public async Task<IActionResult> Privacy()
-        {
-            var bookModel = new BookViewModel();
-            bookModel.Books = new List<BookModel>();
-            bookModel.BookForm = new BookModel();
-
-            using (var client = new HttpClient())
-            {
-                bookModel.Books = await client.GetFromJsonAsync<IEnumerable<BookModel>>("https://localhost:7189/api/Books");
-            }
-
-            return View(bookModel);
         }
 
         [AllowAnonymous]

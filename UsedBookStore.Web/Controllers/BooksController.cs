@@ -121,7 +121,7 @@ namespace UsedBookStore.Web.Controllers
 
             using (var client = new HttpClient())
             {
-                await client.PostAsJsonAsync("https://localhost:7090/api/orders", order);
+                await client.PostAsJsonAsync("https://localhost:7090/api/orders?key=gorbatjov", order);
             }
 
             foreach (var item in shoppingCart)
@@ -131,7 +131,7 @@ namespace UsedBookStore.Web.Controllers
 
                 using (var client = new HttpClient())
                 {
-                    await client.PostAsJsonAsync("https://localhost:7090/api/OrderRows", orderRow);
+                    await client.PostAsJsonAsync("https://localhost:7090/api/OrderRows?key=gorbatjov", orderRow);
                 }
             }
             HttpContext.Session.Clear();

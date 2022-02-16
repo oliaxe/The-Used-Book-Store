@@ -9,67 +9,6 @@ namespace UsedBookStore.API.Models.Entities
 
         }
 
-        public BookEntity(int id)
-        {
-            Id = id;
-        }
-
-        public BookEntity(string title, string author)
-        {
-            Title = title;
-            Author = author;
-        }
-
-        public BookEntity(string title, string author, string iSBN, decimal price)
-        {
-            Title = title;
-            Author = author;
-            ISBN = iSBN;
-            Price = price;
-        }
-
-        public BookEntity(string title, string author, string description, string iSBN)
-        {
-            Title = title;
-            Author = author;
-            Description = description;
-            ISBN = iSBN;
-        }
-
-        public BookEntity(string title, string author, string imageUrl, string description, string iSBN, decimal price)
-        {
-            Title = title;
-            Author = author;
-            ImageUrl = imageUrl;
-            Description = description;
-            ISBN = iSBN;
-            Price = price;
-        }
-
-        public BookEntity(int id, string title, string author, string iSBN, decimal price, FormatEntity format, GenreEntity genre, ConditionEntity condition)
-        {
-            Id = id;
-            Title = title;
-            Author = author;
-            ISBN = iSBN;
-            Price = price;
-            Format = format;
-            Genre = genre;
-            Condition = condition;
-        }
-
-        public BookEntity(int id, string title, string author, string iSBN, decimal price, int formatID, int genreId, int conditionId)
-        {
-            Id = id;
-            Title = title;
-            Author = author;
-            ISBN = iSBN;
-            Price = price;
-            FormatId = formatID;
-            GenreId = genreId;
-            ConditionId = conditionId;
-        }
-
         public BookEntity(int id, string title, string author, string imageUrl, string description, string iSBN, decimal price, int formatID, int genreId, int conditionId)
         {
             Id = id;
@@ -84,53 +23,6 @@ namespace UsedBookStore.API.Models.Entities
             ConditionId = conditionId;
         }
 
-        public BookEntity(int id, string title, string author, string iSBN, decimal price, FormatEntity format, GenreEntity genre, ConditionEntity condition, int formatID, int genreId, int conditionId)
-        {
-            Id = id;
-            Title = title;
-            Author = author;
-            ISBN = iSBN;
-            Price = price;
-            Format = format;
-            Genre = genre;
-            Condition = condition;
-            FormatId = formatID;
-            GenreId = genreId;
-            ConditionId = conditionId;
-        }
-
-        public BookEntity(int id, string title, string author, string description, string iSBN, decimal price, int formatID, int genreId, int conditionId, FormatEntity format, GenreEntity genre, ConditionEntity condition)
-        {
-            Id = id;
-            Title = title;
-            Author = author;
-            Description = description;
-            ISBN = iSBN;
-            Price = price;
-            FormatId = formatID;
-            GenreId = genreId;
-            ConditionId = conditionId;
-            Format = format;
-            Genre = genre;
-            Condition = condition;
-        }
-
-        public BookEntity(int id, string title, string author, string imageUrl, string description, string iSBN, decimal price, int formatID, int genreId, int conditionId, FormatEntity format, GenreEntity genre, ConditionEntity condition)
-        {
-            Id = id;
-            Title = title;
-            Author = author;
-            ImageUrl = imageUrl;
-            Description = description;
-            ISBN = iSBN;
-            Price = price;
-            FormatId = formatID;
-            GenreId = genreId;
-            ConditionId = conditionId;
-            Format = format;
-            Genre = genre;
-            Condition = condition;
-        }
 
         [Key]
         public int Id { get; set; }

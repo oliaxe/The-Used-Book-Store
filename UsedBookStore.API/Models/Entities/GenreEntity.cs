@@ -8,10 +8,6 @@ namespace UsedBookStore.API.Models.Entities
         {
 
         }
-        public GenreEntity(string name)
-        {
-            Name = name;
-        }
 
         public GenreEntity(int id, string name)
         {
@@ -19,12 +15,6 @@ namespace UsedBookStore.API.Models.Entities
             Name = name;
         }
 
-        public GenreEntity(int id, string name, List<BookEntity> books)
-        {
-            Id = id;
-            Name = name;
-            Books = books;
-        }
 
         [Key]
         public int Id { get; set; }

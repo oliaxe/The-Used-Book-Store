@@ -8,22 +8,11 @@ namespace UsedBookStore.API.Models.Entities
         {
 
         }
-        public FormatEntity(string name)
-        {
-            Name = name;
-        }
 
         public FormatEntity(int id, string name)
         {
             Id = id;
             Name = name;
-        }
-
-        public FormatEntity(int id, string name, List<BookEntity> books)
-        {
-            Id = id;
-            Name = name;
-            Books = books;
         }
 
         [Key]

@@ -19,24 +19,6 @@ namespace UsedBookStore.API.Models.Entities
             Quantity = quantity;
         }
 
-        //public OrderRowEntity(int orderRowId, OrderEntity order, BookEntity book, int quantity)
-        //{
-        //    OrderRowId = orderRowId;
-        //    Order = order;
-        //    Book = book;
-        //    Quantity = quantity;
-
-        //}
-
-        public OrderRowEntity(int orderRowId, int orderId, int bookId, int quantity, OrderEntity order, BookEntity book)
-        {
-            OrderRowId = orderRowId;
-            OrderId = orderId;
-            BookId = bookId;
-            Quantity = quantity;
-            Order = order;
-            Book = book;
-        }
 
         [Key]
         public int OrderRowId { get; set; }

@@ -1,10 +1,8 @@
 ﻿@model FormatViewModel
 
-
 <div class="container">
 <div class="row pb-3">
 			<h1 class="fw-light" style="color: rgb(153, 179, 166);">@Model.FormatForm.Name</h1>
-
 			@foreach (var p in @Model.BooksByFormat)
 			{
 				@if (p.Format.Name == @Model.FormatForm.Name)
@@ -42,6 +40,5 @@
 				</div>
 				}
 			}
-
 		</div>
 		</div>

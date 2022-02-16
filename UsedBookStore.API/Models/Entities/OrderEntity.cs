@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace UsedBookStore.API.Models.Entities
 {
@@ -6,13 +7,6 @@ namespace UsedBookStore.API.Models.Entities
     {
         public OrderEntity(DateTime orderDate, string customerEmail)
         {
-            OrderDate = orderDate;
-            CustomerEmail = customerEmail;
-        }
-
-        public OrderEntity(int id, DateTime orderDate, string customerEmail)
-        {
-            Id = id;
             OrderDate = orderDate;
             CustomerEmail = customerEmail;
         }

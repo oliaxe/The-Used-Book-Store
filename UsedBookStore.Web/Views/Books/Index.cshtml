@@ -3,33 +3,33 @@
 <div class="p-2 m-5" style="float: right; width: 320px;">
 
     <form>
-    <h5 class="fw-light">Shopping cart</h5>
-    @if (ViewBag.ShoppingCart == null)
-    {
-        <p>Your shopping cart is empty</p>
-    }
-    else
-    {
-        <ul class="list-group list-group-flush">
-            
-            @foreach (var item in ViewBag.ShoppingCart)
-            {
-                    {
-                <div>
+        <h5 class="fw-light">Shopping cart</h5>
+        @if (ViewBag.ShoppingCart == null)
+        {
+            <p>Your shopping cart is empty</p>
+        }
+        else
+        {
+            <ul class="list-group list-group-flush">
 
-                <li class="list-group-item">
-                    <h5>@item.Book.Title</h5>
-                    <p>@item.Book.Price SEK - Amount: @item.Quantity</p>
-                </li>
-        </div>
+                @foreach (var item in ViewBag.ShoppingCart)
+                {
+                    {
+                        <div>
+
+                        <li class="list-group-item">
+                            <h5>@item.Book.Title</h5>
+                            <p>@item.Book.Price SEK - Amount: @item.Quantity</p>
+                        </li>
+            </div>
+                    }
                 }
-            }
-        </ul>
-    }
+            </ul>
+        }
         @if (ViewBag.ShoppingCart != null)
-    {
-        <a class="nav-link text-dark btn-xs" style="float:right" input-type="submit" value="BookViewModel" asp-area="" asp-controller="Books" asp-action="CheckOut">Check out</a>
-    }
+        {
+    <a class="nav-link text-dark btn-xs" style="float:right" input-type="submit" value="BookViewModel" asp-area="" asp-controller="Books" asp-action="CheckOut">Check out</a>
+        }
     </form>
     </div>
 
@@ -73,13 +73,11 @@
             </div>
         }
 
-
-
     </div>
 
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.BookForm.Id)
         @Html.Hidden("ShoppingCartItem", (object)ViewBag.ShoppingCart)
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" />
     }

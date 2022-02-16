@@ -8,23 +8,7 @@ namespace UsedBookStore.Web.Models.Entities
         {
 
         }
-        public ConditionEntity(string name)
-        {
-            Name = name;
-        }
 
-        public ConditionEntity(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public ConditionEntity(int id, string name, List<BookEntity> books)
-        {
-            Id = id;
-            Name = name;
-            Books = books;
-        }
 
         [Key]
         public int Id { get; set; }
