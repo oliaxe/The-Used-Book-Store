@@ -10,7 +10,7 @@
                     <div class="card-body" style="height:480px; background-color: rgb(233, 233, 233);">
                         <div class="pl-1">
                             <p class="card-title h5 fw-bold">OrderId: @Model.Order.Id</p>
-                            <p class="card-title fw-light"><b>Customer email: @Model.Order.CustomerEmail</b></p>
+                            <p class="card-title fw-light"><b>Customer email: <br /> @Model.Order.CustomerEmail</b></p>
                         </div>
                         <div class="pl-1 fw-light">
                               @foreach (var i in ViewBag.OrderRowsId)
