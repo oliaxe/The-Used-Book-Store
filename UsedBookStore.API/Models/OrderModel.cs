@@ -21,5 +21,6 @@
         public DateTime OrderDate { get; set; }
         public string CustomerEmail { get; set; }
         public CustomerModel Customer { get; set; }
+
     }
 }

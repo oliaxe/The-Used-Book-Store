@@ -1,0 +1,27 @@
+﻿@model OrderViewModel
+
+<div class="container mt-5" style="float:right;">
+<h1 class="fw-light" style="color: rgb(153, 179, 166);">Order @Model.Order.Id</h1>
+
+        <div class="col-lg-3 col-md-6 ">
+        <div class="row p-2">
+            <div class="col-12 p-1" style="border:1px solid #838099; border-radius: 5px; width: 500px; height: 500px;">
+                <div class="card">
+                    <div class="card-body" style="height:480px; background-color: rgb(233, 233, 233);">
+                        <div class="pl-1">
+                            <p class="card-title h5 fw-bold">OrderId: @Model.Order.Id</p>
+                            <p class="card-title fw-light"><b>Customer email: @Model.Order.CustomerEmail</b></p>
+                        </div>
+                        <div class="pl-1 fw-light">
+                              @foreach (var i in ViewBag.OrderRowsId)
+                            {
+                                <font>@i.Book.Author - @i.Book.Title - @i.Quantity </font><br />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

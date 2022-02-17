@@ -6,7 +6,6 @@
         public DateTime OrderDate { get; set; }
         public string CustomerEmail { get; set; }
         public OrderRowModel OrderRowModel { get; set; }
-        public IEnumerable<OrderRowModel> OrderRows { get; set; }
 
     }
 }

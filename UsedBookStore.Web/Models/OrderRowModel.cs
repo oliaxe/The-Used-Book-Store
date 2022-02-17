@@ -8,5 +8,6 @@
         public int Quantity { get; set; }
         public OrderModel Order { get; set; }
         public BookModel Book { get; set; }
+        public IEnumerable<BookModel> Books { get; set; }
     }
 }

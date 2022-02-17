@@ -1,10 +1,10 @@
 ﻿@model OrderViewModel
 
-<div class="container mt-5">
+<div class="container mt-5" style="float:right;">
 <h1 class="fw-light" style="color: rgb(153, 179, 166);">All order rows</h1>
 <h5 class="fw-light">Please see order number</h5>
 
-@foreach (var p in ViewBag.OrderRows)
+@foreach (var p in ViewBag.Orders)
 {
         <div class="col-lg-3 col-md-6 ">
         <div class="row p-2">
@@ -12,12 +12,13 @@
                 <div class="card">
                     <div class="card-body" style="height:160px; background-color: rgb(233, 233, 233);">
                         <div class="pl-1">
-                            <p class="card-title h5 fw-bold">OrderId: @p.Order.Id</p>
-                            <p class="card-title fw-light"><b>Book: @p.Book.Title</b></p>
-                            <p class="card-title h5 fw-light">Quantity: @p.Quantity </p>
+                            <p class="card-title h5 fw-bold">OrderId: @p.Id</p>
+                            <p class="card-title fw-light"><b>Customer email: @p.CustomerEmail</b></p>
                         </div>
                         <div class="pl-1 fw-light">
-                            <p>Email: <b>@p.Order.CustomerEmail</b> </p>
+                                                          <a asp-action="Details" class="btn form-control btn-xs" asp-route-id="@p.Id">
+                                        Details
+                                    </a>
                         </div>
                     </div>
                 </div>

@@ -51,9 +51,10 @@ namespace UsedBookStore.API.Controllers
             return new OrderModel(
                    orderEntity.Id,
                    orderEntity.OrderDate,
-                   new CustomerModel(orderEntity.Customer.FirstName, orderEntity.Customer.LastName)
+                   orderEntity.CustomerEmail
                 );
         }
+
 
         // POST api/<OrdersController>
         [HttpPost]

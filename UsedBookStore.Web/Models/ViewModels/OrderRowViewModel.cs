@@ -8,5 +8,7 @@ public class OrderRowViewModel
     public int BookId { get; set; }
     public int Quantity { get; set; }
     public IEnumerable<OrderRowModel> OrderRows { get; set; }
+    public IEnumerable<BookModel> Books { get; set; }
+
 }
 
